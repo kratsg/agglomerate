@@ -1,3 +1,6 @@
+//Origin: https://github.com/raulriera/XHR
+//Changed made by kratsg for the better
+
 // Create the cache manager (a shared object)
 var cacheManager = Titanium.App.Properties.getObject("cachedXHRDocuments", {});
 
@@ -14,7 +17,7 @@ XHR = function(){};
 XHR.prototype.get = function(url, onSuccess, onError, extraParams) {
 	// Debug
 	Titanium.API.info(url);
-	
+
 	// Create some default params
 	var onSuccess = onSuccess || function(){};
 	var onError = onError || function(){};
@@ -23,6 +26,9 @@ XHR.prototype.get = function(url, onSuccess, onError, extraParams) {
 	extraParams.ttl = extraParams.ttl || false; 
 	extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false; // if you set this to true, pass "username" and "password" as well
 	extraParams.contentType = extraParams.contentType || "application/json";
+	//edited to include a header that passes the Unique ID of the device
+	extraParams.headers = extraParams.headers || [];
+	extraParams.headers.push({header:'Uuid',value:Ti.Platform.id});
 		
 	var cache = readCache(url);
 	// If there is nothing cached, send the request
@@ -44,6 +50,9 @@ XHR.prototype.get = function(url, onSuccess, onError, extraParams) {
 			var authstr = 'Basic ' + Titanium.Utils.base64encode(extraParams.username + ':' + extraParams.password); 
 			xhr.setRequestHeader('Authorization', authstr);
 		}
+		
+		//set up the request headers
+		_.each(extraParams.headers, function(i){xhr.setRequestHeader('X-'+String(i.header),i.value);});
 	
 		// When the connection was successful
 		xhr.onload = function() {
@@ -104,6 +113,10 @@ XHR.prototype.post = function(url, data, onSuccess, onError, extraParams) {
 	extraParams.async = (extraParams.hasOwnProperty('async')) ? extraParams.async : true;
 	extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false; // if you set this to true, pass "username" and "password" as well
 	extraParams.contentType = extraParams.contentType || "application/json";
+	//edited to include a header that passes the Unique ID of the device
+	extraParams.headers = extraParams.headers || [];
+	extraParams.headers.push({header:'Uuid',value:Ti.Platform.id});
+
 	
 	// Create the HTTP connection
 	var xhr = Titanium.Network.createHTTPClient({
@@ -121,6 +134,9 @@ XHR.prototype.post = function(url, data, onSuccess, onError, extraParams) {
 		var authstr = 'Basic ' + Titanium.Utils.base64encode(extraParams.username + ':' + extraParams.password); 
 		xhr.setRequestHeader('Authorization', authstr);
 	}
+	
+	//set up the request headers
+	_.each(extraParams.headers, function(i){xhr.setRequestHeader('X-'+String(i.header),i.value);});
 	
 	// When the connection was successful
 	xhr.onload = function() {
@@ -157,6 +173,10 @@ XHR.prototype.put = function(url, data, onSuccess, onError, extraParams) {
 	extraParams.async = (extraParams.hasOwnProperty('async')) ? extraParams.async : true;
 	extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false; // if you set this to true, pass "username" and "password" as well
 	extraParams.contentType = extraParams.contentType || "application/json";
+	//edited to include a header that passes the Unique ID of the device
+	extraParams.headers = extraParams.headers || [];
+	extraParams.headers.push({header:'Uuid',value:Ti.Platform.id});
+
 	
 	// Create the HTTP connection
 	var xhr = Titanium.Network.createHTTPClient({
@@ -174,6 +194,9 @@ XHR.prototype.put = function(url, data, onSuccess, onError, extraParams) {
 		var authstr = 'Basic ' + Titanium.Utils.base64encode(extraParams.username + ':' + extraParams.password); 
 		xhr.setRequestHeader('Authorization', authstr);
 	}
+	
+	//set up the request headers
+	_.each(extraParams.headers, function(i){xhr.setRequestHeader('X-'+String(i.header),i.value);});
 	
 	// When the connection was successful
 	xhr.onload = function() {
@@ -212,6 +235,9 @@ XHR.prototype.destroy = function(url, onSuccess, onError, extraParams) {
 	extraParams.async = (extraParams.hasOwnProperty('async')) ? extraParams.async : true;
 	extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false; // if you set this to true, pass "username" and "password" as well
 	extraParams.contentType = extraParams.contentType || "application/json";
+	//edited to include a header that passes the Unique ID of the device
+	extraParams.headers = extraParams.headers || [];
+	extraParams.headers.push({header:'Uuid',value:Ti.Platform.id});
 	
 	// Create the HTTP connection
 	var xhr = Titanium.Network.createHTTPClient({
@@ -229,6 +255,9 @@ XHR.prototype.destroy = function(url, onSuccess, onError, extraParams) {
 		var authstr = 'Basic ' + Titanium.Utils.base64encode(extraParams.username + ':' + extraParams.password); 
 		xhr.setRequestHeader('Authorization', authstr);
 	}
+	
+	//set up the request headers
+	_.each(extraParams.headers, function(i){xhr.setRequestHeader('X-'+String(i.header),i.value);});
 	
 	// When the connection was successful
 	xhr.onload = function() {

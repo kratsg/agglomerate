@@ -11,6 +11,11 @@ XHR.prototype.get = function(url, onSuccess, onError, extraParams) {
     extraParams.ttl = extraParams.ttl || false;
     extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false;
     extraParams.contentType = extraParams.contentType || "application/json";
+    extraParams.headers = extraParams.headers || [];
+    extraParams.headers.push({
+        header: "UUID",
+        value: Ti.Platform.id
+    });
     var cache = readCache(url);
     if (extraParams.ttl && 0 != cache) {
         var result = {};
@@ -28,6 +33,9 @@ XHR.prototype.get = function(url, onSuccess, onError, extraParams) {
             var authstr = "Basic " + Titanium.Utils.base64encode(extraParams.username + ":" + extraParams.password);
             xhr.setRequestHeader("Authorization", authstr);
         }
+        _.each(extraParams.headers, function(i) {
+            xhr.setRequestHeader("X-" + String(i.header), i.value);
+        });
         xhr.onload = function() {
             result.status = 200 == xhr.status ? "ok" : xhr.status;
             result.data = -1 != extraParams.contentType.indexOf("application/json") ? xhr.responseText : -1 != extraParams.contentType.indexOf("text/xml") ? xhr.responseXML : xhr.responseData;

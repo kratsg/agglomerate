@@ -84,6 +84,9 @@ function Controller() {
             ttl: 5,
             contentType: "application/json"
         });
+        xhr.get("http://httpbin.org/headers", function(result) {
+            Ti.API.log(JSON.stringify(result));
+        });
     });
     _.extend($, exports);
 }

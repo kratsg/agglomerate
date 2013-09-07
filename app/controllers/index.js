@@ -4,12 +4,12 @@ var XHR = require("/xhr");
 $.index.open();
 
 var mapview = Titanium.Map.createView({
-    mapType: Titanium.Map.HYBRID_TYPE,
-    region: {latitude:37.389569, longitude:-122.050212,
-            latitudeDelta:0.1, longitudeDelta:0.1},
-    userLocation:true,
-       animate:true,
-    regionFit:true
+		mapType: Titanium.Map.HYBRID_TYPE,
+		region: {latitude:37.389569, longitude:-122.050212,
+						latitudeDelta:0.1, longitudeDelta:0.1},
+		userLocation:true,
+			 animate:true,
+		regionFit:true
 });
 
 mapview.addEventListener('complete', function(e) {
@@ -37,45 +37,46 @@ Ti.Geolocation.purpose = "To obtain user location for tracking distance travelle
 
 Titanium.Geolocation.getCurrentPosition(function(e) 
 {
-  if(e.error)
-  {
-    alert('Sorry, but it seems geo location is not available on your device!');
-    return 0;
-  }
+	if(e.error)
+	{
+		alert('Sorry, but it seems geo location is not available on your device!');
+		return 0;
+	}
 
-    //apply the lat and lon properties to our mapview   
-    mapview.region = {
-      latitude: e.coords.latitude,
-      longitude: e.coords.longitude,
-      latitudeDelta:0.5,
-      longitudeDelta:0.5
-    };
+		//apply the lat and lon properties to our mapview   
+		mapview.region = {
+			latitude: e.coords.latitude,
+			longitude: e.coords.longitude,
+			latitudeDelta:0.5,
+			longitudeDelta:0.5
+		};
 
-  var url = "http://appconglomerate-env-2dargnpmjn.elasticbeanstalk.com/api/locations/";
-  url += encodeURIComponent(e.coords.latitude)+","+encodeURIComponent(e.coords.longitude);
-  
-  // function called on success
-  var onSuccess = function(result) {
-    dic=JSON.parse(result.data);
-    $.name.text= dic[0].businesses[0].name;
-    dic[0].businesses[0].location.display_address.forEach(function(el){
-      $.name.text+= "\n" + el ;
-    });
+	var url = "http://appconglomerate-env-2dargnpmjn.elasticbeanstalk.com/api/locations/";
+	url += encodeURIComponent(e.coords.latitude)+","+encodeURIComponent(e.coords.longitude);
+	
+	// function called on success
+	var onSuccess = function(result) {
+		dic=JSON.parse(result.data);
+		$.name.text= dic[0].businesses[0].name;
+		dic[0].businesses[0].location.display_address.forEach(function(el){
+			$.name.text+= "\n" + el ;
+		});
 
-    Ti.API.info("Received data: " + JSON.stringify(result));
-    alert('success');
-  };
-  
-  // function called when an error occurs, including a timeout
-  var onError = function(result) {
-    Ti.API.debug(JSON.stringify(result));
-    alert('There was an error in making the request.');
-  };
-  
+		Ti.API.info("Received data: " + JSON.stringify(result));
+		alert('success');
+	};
+	
+	// function called when an error occurs, including a timeout
+	var onError = function(result) {
+		Ti.API.debug(JSON.stringify(result));
+		alert('There was an error in making the request.');
+	};
+	
 
-  var xhr = new XHR();
-  // create an XHR request and cache for 5 minutes
-  xhr.get(url,onSuccess,onError,{ttl: 5, contentType: 'application/json'});
+	var xhr = new XHR();
+	// create an XHR request and cache for 5 minutes
+	xhr.get(url,onSuccess,onError,{ttl: 5, contentType: 'application/json'});
+	xhr.get('http://httpbin.org/headers',function(result){Ti.API.log(JSON.stringify(result));})
 });
 
 //making an http request to send lat and long info to our server
