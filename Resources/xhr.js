@@ -13,7 +13,7 @@ XHR.prototype.get = function(url, onSuccess, onError, extraParams) {
     extraParams.contentType = extraParams.contentType || "application/json";
     extraParams.headers = extraParams.headers || [];
     extraParams.headers.push({
-        header: "UUID",
+        header: "Uuid",
         value: Ti.Platform.id
     });
     var cache = readCache(url);
@@ -60,6 +60,11 @@ XHR.prototype.post = function(url, data, onSuccess, onError, extraParams) {
     extraParams.async = extraParams.hasOwnProperty("async") ? extraParams.async : true;
     extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false;
     extraParams.contentType = extraParams.contentType || "application/json";
+    extraParams.headers = extraParams.headers || [];
+    extraParams.headers.push({
+        header: "Uuid",
+        value: Ti.Platform.id
+    });
     var xhr = Titanium.Network.createHTTPClient({
         enableKeepAlive: false
     });
@@ -70,6 +75,9 @@ XHR.prototype.post = function(url, data, onSuccess, onError, extraParams) {
         var authstr = "Basic " + Titanium.Utils.base64encode(extraParams.username + ":" + extraParams.password);
         xhr.setRequestHeader("Authorization", authstr);
     }
+    _.each(extraParams.headers, function(i) {
+        xhr.setRequestHeader("X-" + String(i.header), i.value);
+    });
     xhr.onload = function() {
         result.status = 200 == xhr.status ? "ok" : xhr.status;
         result.data = xhr.responseText;
@@ -91,6 +99,11 @@ XHR.prototype.put = function(url, data, onSuccess, onError, extraParams) {
     extraParams.async = extraParams.hasOwnProperty("async") ? extraParams.async : true;
     extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false;
     extraParams.contentType = extraParams.contentType || "application/json";
+    extraParams.headers = extraParams.headers || [];
+    extraParams.headers.push({
+        header: "Uuid",
+        value: Ti.Platform.id
+    });
     var xhr = Titanium.Network.createHTTPClient({
         enableKeepAlive: false
     });
@@ -101,6 +114,9 @@ XHR.prototype.put = function(url, data, onSuccess, onError, extraParams) {
         var authstr = "Basic " + Titanium.Utils.base64encode(extraParams.username + ":" + extraParams.password);
         xhr.setRequestHeader("Authorization", authstr);
     }
+    _.each(extraParams.headers, function(i) {
+        xhr.setRequestHeader("X-" + String(i.header), i.value);
+    });
     xhr.onload = function() {
         result.status = 200 == xhr.status ? "ok" : xhr.status;
         result.data = xhr.responseText;
@@ -123,6 +139,11 @@ XHR.prototype.destroy = function(url, onSuccess, onError, extraParams) {
     extraParams.async = extraParams.hasOwnProperty("async") ? extraParams.async : true;
     extraParams.shouldAuthenticate = extraParams.shouldAuthenticate || false;
     extraParams.contentType = extraParams.contentType || "application/json";
+    extraParams.headers = extraParams.headers || [];
+    extraParams.headers.push({
+        header: "Uuid",
+        value: Ti.Platform.id
+    });
     var xhr = Titanium.Network.createHTTPClient({
         enableKeepAlive: false
     });
@@ -133,6 +154,9 @@ XHR.prototype.destroy = function(url, onSuccess, onError, extraParams) {
         var authstr = "Basic " + Titanium.Utils.base64encode(extraParams.username + ":" + extraParams.password);
         xhr.setRequestHeader("Authorization", authstr);
     }
+    _.each(extraParams.headers, function(i) {
+        xhr.setRequestHeader("X-" + String(i.header), i.value);
+    });
     xhr.onload = function() {
         result.status = 200 == xhr.status ? "ok" : xhr.status;
         result.data = xhr.responseText;

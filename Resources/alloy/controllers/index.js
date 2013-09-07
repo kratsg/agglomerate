@@ -72,7 +72,7 @@ function Controller() {
             dic[0].businesses[0].location.display_address.forEach(function(el) {
                 $.name.text += "\n" + el;
             });
-            Ti.API.info("Received data: " + JSON.stringify(result));
+            Ti.API.info("Received data: " + result.data);
             alert("success");
         };
         var onError = function(result) {
@@ -83,9 +83,6 @@ function Controller() {
         xhr.get(url, onSuccess, onError, {
             ttl: 5,
             contentType: "application/json"
-        });
-        xhr.get("http://httpbin.org/headers", function(result) {
-            Ti.API.log(JSON.stringify(result));
         });
     });
     _.extend($, exports);

@@ -62,7 +62,7 @@ Titanium.Geolocation.getCurrentPosition(function(e)
 			$.name.text+= "\n" + el ;
 		});
 
-		Ti.API.info("Received data: " + JSON.stringify(result));
+		Ti.API.info("Received data: " + result.data);
 		alert('success');
 	};
 	
@@ -76,7 +76,6 @@ Titanium.Geolocation.getCurrentPosition(function(e)
 	var xhr = new XHR();
 	// create an XHR request and cache for 5 minutes
 	xhr.get(url,onSuccess,onError,{ttl: 5, contentType: 'application/json'});
-	xhr.get('http://httpbin.org/headers',function(result){Ti.API.log(JSON.stringify(result));})
 });
 
 //making an http request to send lat and long info to our server
