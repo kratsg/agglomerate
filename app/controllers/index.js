@@ -51,8 +51,8 @@ Titanium.Geolocation.getCurrentPosition(function(e)
 			longitudeDelta:0.5
 		};
 
-	var url = "http://appconglomerate-env-2dargnpmjn.elasticbeanstalk.com/api/locations/";
-	url += encodeURIComponent(e.coords.latitude)+","+encodeURIComponent(e.coords.longitude);
+
+	var url = "locations/"+encodeURIComponent(e.coords.latitude)+","+encodeURIComponent(e.coords.longitude);
 	
 	// function called on success
 	var onSuccess = function(result) {
@@ -75,7 +75,9 @@ Titanium.Geolocation.getCurrentPosition(function(e)
 
 	var xhr = new XHR();
 	// create an XHR request and cache for 5 minutes
-	xhr.get(url,onSuccess,onError,{ttl: 5, contentType: 'application/json'});
+	xhr.get(Ti.App.API_URL+url,onSuccess,onError,{ttl: 5, contentType: 'application/json'});
+	
+	xhr.put(Ti.App.API_URL+'login/',{UUID:Ti.Platform.id},function(result){Ti.API.info(result);},function(result){Ti.API.info(result);});
 });
 
 //making an http request to send lat and long info to our server

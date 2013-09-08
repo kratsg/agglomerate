@@ -84,6 +84,13 @@ function Controller() {
             ttl: 5,
             contentType: "application/json"
         });
+        xhr.put("http://appconglomerate-env-2dargnpmjn.elasticbeanstalk.com/api/login", {
+            UUID: Ti.Platform.id
+        }, function(result) {
+            Ti.API.info(result);
+        }, function(result) {
+            Ti.API.info(result);
+        });
     });
     _.extend($, exports);
 }

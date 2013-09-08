@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <id>com.fhl.prac1</id>
-    <name>prac1</name>
+    <id>com.fhl.agglomerate</id>
+    <name>agglomerate</name>
     <version>1.0</version>
     <publisher>michaellaskin</publisher>
     <url>http://fivehalflabs.com</url>

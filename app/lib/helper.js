@@ -3,3 +3,5 @@
 obj2params = function(){
   return _.map(this, function(v,k){return encodeURIComponent(k)+'='+encodeURIComponent(v);}).join('&');
 };
+
+Ti.App.API_URL = 'http://appconglomerate-env-2dargnpmjn.elasticbeanstalk.com/api/';
