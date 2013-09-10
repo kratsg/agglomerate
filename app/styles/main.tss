@@ -1,0 +1,29 @@
+"#mainwin": {
+	backgroundColor:"#ccc",
+	layout: "vertical"
+}
+
+"Button": {
+	top: 10
+}
+
+
+"#buttonNotification": {
+	title: "Open Notification Window"
+}
+
+"#buttonHistory": {
+	title: "Open History Window"
+}
+
+"#buttonSuggestion": {
+	title: "Open Suggestion Window"
+}
+
+"#buttonUser": {
+	title: "Open User Window"
+}
+
+"#buttonYes": {
+	title: "Open Yes Window"
+}

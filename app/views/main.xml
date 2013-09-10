@@ -1,0 +1,18 @@
+<Alloy>
+	<Window id="mainwin" platform="android">
+		<Button id="buttonNotification">
+	</Window>
+
+	<!-- We need a top-level window here to add in the navgroupx -->
+	<Window platform="ios">
+		<NavigationGroup id="nav">
+			<Window id="mainwin">
+				<Button id="buttonNotification" />
+				<Button id="buttonHistory" />
+				<Button id="buttonSuggestion" />
+				<Button id="buttonUser" />
+				<Button id="buttonYes" />
+			</Window>
+		</NavigationGroup>
+	</Window>
+</Alloy>

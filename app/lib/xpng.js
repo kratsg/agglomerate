@@ -19,6 +19,6 @@ exports.openWin=function(navGroup,winName){
 		});
 		w.open();
 	}else{
-		navGroup.open(w,{animated:true});
+		navGroup.open(w,{animated:true,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT});
 	}
 };

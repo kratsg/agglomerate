@@ -1,4 +1,3 @@
 <Alloy>
-	<View class="container">
-	</View>
+    <Window title="Suggestion" backgroundColor="green" />
 </Alloy>
