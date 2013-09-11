@@ -5,5 +5,7 @@
 	"env:production": {}, 
 	"os:ios": {}, 
 	"os:android": {}, 
-	"dependencies": {}
+	"dependencies": {
+		"be.k0suke.fontawesome": "1.0"
+	}
 }
