@@ -2,6 +2,14 @@ require("helper");
 var XHR = require("xhr");
 var xpng = require('xpng');
 
+var fontawesome = require('IconicFont').IconicFont({
+	font: 'FontAwesome',
+	ligature: false	// optional
+});
+
+
+Alloy.CFG.red = "red";
+
 if (OS_IOS && !Alloy.CFG.nav){
 	Alloy.CFG.nav=$.nav;
 }
