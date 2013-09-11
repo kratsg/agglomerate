@@ -12,6 +12,7 @@
 				<Button id="buttonSuggestion" />
 				<Button id="buttonUser" />
 				<Button id="buttonYes" />
+				<Widget class="icon" icon="icon-github" src="be.k0suke.fontawesome"/>
 			</Window>
 		</NavigationGroup>
 	</Window>
