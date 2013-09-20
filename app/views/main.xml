@@ -4,7 +4,7 @@
 	</Window>
 
 	<!-- We need a top-level window here to add in the navgroupx -->
-	<Window platform="ios">
+	<Window platform="ios" fullscreen="true">
 		<NavigationGroup id="nav">
 			<Window id="mainwin">
 				<Button id="buttonNotification" />
