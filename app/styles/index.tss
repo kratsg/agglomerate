@@ -1,0 +1,8 @@
+"#mainwin": {
+	backgroundColor:"#ccc",
+	layout: "vertical"
+}
+
+"#nav": {
+	backgroundColor: "red"
+}

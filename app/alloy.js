@@ -9,3 +9,7 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+Alloy.Globals.ENV = 'dev';//'dev' or 'prod'
+Alloy.Globals.API_URL_DEV = 'http://192.168.1.105:8000/api/';
+Alloy.Globals.API_URL_PROD = 'http://appconglomerate-env-2dargnpmjn.elasticbeanstalk.com/api/';
+Alloy.Globals.API_URL = (Alloy.Globals.ENV == 'dev') ? Alloy.Globals.API_URL_DEV : Alloy.Globals.API_URL_PROD;

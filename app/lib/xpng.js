@@ -1,8 +1,13 @@
 //https://github.com/ricardoalcocer/TiCrossPlatformNavigationGroup/tree/master/app
 exports.openWin=function(navGroup,winName){
-	var w=Alloy.createController(winName).getView();
 
-	if (OS_ANDROID){
+	if (typeof Alloy === 'undefined'){
+		var w=winName; // transfer the value to a new variable so the rest of the code remains the same	
+	}else{
+		var w=Alloy.createController(winName).getView();
+	};
+
+	if (Ti.Platform.osname==='android'){
 		w.addEventListener('open',function(e){
 			if (! w.getActivity()) {
 				Ti.API.error("Can't access action bar on a lightweight window.");
@@ -19,6 +24,6 @@ exports.openWin=function(navGroup,winName){
 		});
 		w.open();
 	}else{
-		navGroup.open(w,{animated:true,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT});
+		navGroup.openWindow(w,{animated:true});
 	}
 };

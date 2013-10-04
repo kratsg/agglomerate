@@ -1,3 +1,12 @@
 <Alloy>
-	<Window title="Splash Screen" />
+	<Window id="index" platform="android">
+		<Button id="buttonNotification">
+	</Window>
+
+	<!-- We need a top-level window here to add in the navgroupx -->
+	<NavigationWindow id="nav" platform="ios">
+		<Window id="mainwin">
+			<Require src="main" />
+		</Window>
+	</NavigationWindow>
 </Alloy>

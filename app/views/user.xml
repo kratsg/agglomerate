@@ -1,3 +1,3 @@
 <Alloy>
-    <Window title="User" backgroundColor="green" />
+    <Window id="index" title="User" backgroundColor="yellow" />
 </Alloy>

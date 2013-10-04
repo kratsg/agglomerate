@@ -1,0 +1,1 @@
+$.index.statusBarStyle = Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT;

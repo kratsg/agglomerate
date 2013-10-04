@@ -1,0 +1,23 @@
+'.icon': {
+    top: 20,
+    width: Ti.UI.SIZE,
+    height: Ti.UI.SIZE,
+    color: '#333',
+    shadowColor: '#fff',
+    shadowOffset: {
+        x: 0.0,
+        y: 1.0
+    },
+    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+    font: {
+        fontSize: 30
+    },
+//    touchEnabled: true,
+    selectedColor: "red"
+}
+
+'.icon-facebook': {
+	color: "#FFF",
+	width: 30,
+	backgroundColor: "#3B5998"
+}

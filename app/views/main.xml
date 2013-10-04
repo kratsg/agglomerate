@@ -1,19 +1,10 @@
 <Alloy>
-	<Window id="mainwin" platform="android">
-		<Button id="buttonNotification">
-	</Window>
-
-	<!-- We need a top-level window here to add in the navgroupx -->
-	<Window platform="ios" fullscreen="true">
-		<NavigationGroup id="nav">
-			<Window id="mainwin">
-				<Button id="buttonNotification" />
-				<Button id="buttonHistory" />
-				<Button id="buttonSuggestion" />
-				<Button id="buttonUser" />
-				<Button id="buttonYes" />
-				<Widget class="icon" icon="icon-github" src="be.k0suke.fontawesome"/>
-			</Window>
-		</NavigationGroup>
-	</Window>
+	<Button id="buttonNotification" />
+	<Button id="buttonSuggestion" />
+	<Button id="buttonUser" />
+	<Button id="buttonYes" />
+	<Button id="buttonHistory" />
+	<Button id="buttonLogin">Login</Button>
+	<Widget class="icon icon-facebook" icon="icon-facebook" src="be.k0suke.fontawesome" />
+	<Widget class="icon icon-github" icon="icon-github" src="be.k0suke.fontawesome" />
 </Alloy>
